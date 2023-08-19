@@ -3,12 +3,14 @@
 
 /* Standard Libraries */
 #include <stdarg.h>
-
+#include <unistd.h>
 
 /* Prototypes */
 int _printf(const char *format, ...);
 int (*get_func(char c))(va_list);
-
+int _strlen(char *);
+int print_char(va_list);
+int print_string(va_list);
 
 /* Structures */
 /**

@@ -17,9 +17,9 @@ int (*get_func(char c))(va_list)
 	if (!c)
 		return (NULL);
 
-	for (i = 0; type[i]; i++)
+	for (i = 0; type[i].c; i++)
 		if (type[i].c == c)
 			return (type[i].func);
-		else
-			return (NULL);
+
+	return (NULL);
 }
