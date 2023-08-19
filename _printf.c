@@ -7,5 +7,38 @@
  * Return: the number of printed characters, negative value on falure.
  **/
 int _printf(const char *format, ...)
-{ 
+{
+	unsigned int i, len, total_len = 0;
+	va_list args;
+	int (*func)(va_list);
+
+	if (!format)
+		return (-1);
+
+	va_start(args, format);
+	for (i = 0; format[i]; i++)
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == '%')
+			{
+				char c = '%';
+
+				write(1, &c, 1);
+				total_len++;
+			}
+			else
+			{
+				func = get_func(format[i]);
+				len = func(args);
+				total_len += len;
+			}
+			continue;
+		}
+		total_len++;
+		write(STDOUT_FILENO, &format[i], 1);
+	}
+	va_end(args);
+	return (total_len);
 }

@@ -1,30 +1,28 @@
 #include "main.h"
 
-/*testing purposes*/
-#include <string.h>
-
 /**
  * itos - convert an int to a string
- * @n: integer
- * 
+ * @n: unsigned integer
+ *
  * Return: string rep of integer
  */
-char *itos(int n)
+char *itos(unsigned int n)
 {
 	int dig_count = 0;
 	int idx, num = n;
 	char *str;
 
-	/* Get the nymber of digits*/
+	/* Count the digits of n*/
 	do {
-		dig_count ++;
+		dig_count++;
 		num /= 10;
-		
 	} while (num != 0);
 
+	/* Allocate space for all digits + null byte*/
 	str = malloc(dig_count + 1);
 	if (!str)
 		return (NULL);
+	/*Fill the string strating from the last character*/
 	idx = dig_count - 1;
 	do {
 		str[idx] = '0' + (n % 10);
@@ -37,22 +35,33 @@ char *itos(int n)
 }
 
 /**
- * expand_int - converts an integer to a string
- * and appends to buffer struct
- * @num: integer
- * @buffer: pointer to buffer structure
- * 
+ * print_int - prints an integer to stdout.
+ * @args: integer
+ *
+ * Return: 0 (Success)
  */
-void print_int(va_list args)
+int print_int(va_list args)
 {
-	char *str = itos(va_arg(args, int));
-	unsigned int len = 0;
+	char *str;
+	unsigned int n, len = 0;
+	int num;
+
+	num = va_arg(args, int);
+
+	/*Hangle negative numbers & INT_MIN*/
+	n = num < 0 ? num * -1 : num;
+
+	str = itos(n);
 
 	if (str)
 	{
+		char c = '-';
+
+		if (num < 0)
+			write(1, &c, 1);
 		len = _strlen(str);
-		return (write(1, str, len));
+		write(1, str, len);
+		free(str);
 	}
-	free(str);
 	return (0);
 }

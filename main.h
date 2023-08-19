@@ -7,6 +7,15 @@
 #include <stdlib.h>
 
 
+
+/* Prototypes */
+int _printf(const char *format, ...);
+int (*get_func(char c))(va_list);
+unsigned int _strlen(char *);
+int print_char(va_list);
+int print_string(va_list);
+int print_int(va_list);
+
 /* Structures */
 /**
  * struct type - attacghin each character to its function.
@@ -18,25 +27,5 @@ typedef struct type
 	char c;
 	int (*func)(va_list);
 } type_t;
-
-/**
- * struct buffer - keeps the buffer to be printed and its length
- * @str: string to be printed
- * @len: length of string
- */
-typedef struct buffer
-{
-	char *str;
-	unsigned int len;
-} buffer_t;
-
-
-/* Prototypes */
-int _printf(const char *format, ...);
-void *(*get_func(char c))(va_list, buffer_t *);
-void *expand_int(va_list, buffer_t *);
-int print_int(va_list);
-void *expand_string(va_list, buffer_t *);
-unsigned int _strlen(char *);
 
 #endif /* _MAIN_ */

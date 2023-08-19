@@ -5,7 +5,7 @@
  *
  * Return: a pointer to the function, NULL on faliure.
  **/
-int (*get_func(char c))(va_list, buffer_t *)
+int (*get_func(char c))(va_list)
 {
 	type_t type[] = {
 		{'c', print_char},
@@ -19,7 +19,7 @@ int (*get_func(char c))(va_list, buffer_t *)
 	if (!c)
 		return (NULL);
 
-	for (i = 0; type[i]; i++)
+	for (i = 0; type[i].c; i++)
 		if (type[i].c == c)
 			return (type[i].func);
 	return (NULL);
