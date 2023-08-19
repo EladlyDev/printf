@@ -7,14 +7,13 @@
 #include <stdlib.h>
 
 
-
 /* Prototypes */
 int _printf(const char *format, ...);
 int (*get_func(char c))(va_list);
 unsigned int _strlen(char *);
-int print_char(va_list);
-int print_string(va_list);
-int print_int(va_list);
+int print_char(va_list, char *);
+int print_string(va_list, char *);
+int print_int(va_list, char *);
 
 /* Structures */
 /**

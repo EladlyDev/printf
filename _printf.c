@@ -8,9 +8,10 @@
  **/
 int _printf(const char *format, ...)
 {
-	unsigned int i, len, total_len = 0;
+	unsigned int i, total_len = 0;
 	va_list args;
-	int (*func)(va_list);
+	char *buffer;
+	int (*func)(va_list, *buffer);
 
 	if (!format)
 		return (-1);
@@ -30,15 +31,16 @@ int _printf(const char *format, ...)
 			}
 			else
 			{
-				func = get_func(format[i]);
-				len = func(args);
-				total_len += len;
+				get_func(format[i]);
+				func(args);
 			}
 			continue;
 		}
-		total_len++;
-		write(STDOUT_FILENO, &format[i], 1);
 	}
+	total_len = strlen(buffer);
+	write(STDOUT_FILENO, buffer, total_len);
+
+	free(buffer);
 	va_end(args);
 	return (total_len);
 }
