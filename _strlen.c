@@ -6,9 +6,9 @@
  *
  * Return: the length of @str.
  **/
-int _strlen(char *str)
+unsigned int _strlen(char *str)
 {
-	int i;
+	unsigned int i;
 
 	for (i = 0; str[i]; i++)
 		;

@@ -7,5 +7,5 @@
  * Return: the number of printed characters, negative value on falure.
  **/
 int _printf(const char *format, ...)
-{
+{ 
 }
