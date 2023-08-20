@@ -80,8 +80,7 @@ int print_binary(va_list args)
 	unsigned int num;
 
 	num = va_arg(args, unsigned int);
-	if (!num)
-		return (0);
+
 	for (i = 0; num > 0; i++)
 	{
 		arr[i] = num % 2;
