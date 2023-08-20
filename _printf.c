@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 	va_list args;
 	int (*func)(va_list);
 
-	if (!format || *format = '\0')
+	if (!format || *format == '\0')
 		return (-1);
 
 	va_start(args, format);
