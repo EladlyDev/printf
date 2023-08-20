@@ -12,27 +12,12 @@ int _printf(const char *format, ...)
 	va_list args;
 	int (*func)(va_list);
 
-	if (!format || *format == '\0')
+	if (!check_format(format))
 		return (-1);
-
 	va_start(args, format);
 
 	for (i = 0; format[i];)
 	{
-		/* hello %% %s % */
-		if (format[i] == '%' && format[i + 1] == '%')
-		{
-			i += 2;
-			continue;
-		}
-		if (format[i] == '%' && !get_func(format[i + 1]))
-			return (-1);
-		i++;
-	}
-
-	for (i = 0; format[i];)
-	{
-		/* hello %% %b % */
 		if (format[i] == '%' && format[i + 1] == '%')
 		{
 			write(STDOUT_FILENO, &format[i], 1);
