@@ -31,11 +31,11 @@ int print_string(va_list args)
 	if (out)
 	{
 		out_len = _strlen(out);
-		if (out_len)
+		while (*out++)
 		{
-			write(1, out, out_len);
-			return (out_len);
+			write(1, out, 1);
 		}
+		return (out_len);
 	}
 
 	return (0);

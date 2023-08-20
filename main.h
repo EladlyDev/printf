@@ -1,5 +1,5 @@
-#ifndef _MAIN_
-#define _MAIN_
+#ifndef _MAIN_H
+#define _MAIN_H
 
 /* Standard Libraries */
 #include <stdarg.h>
