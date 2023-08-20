@@ -26,7 +26,7 @@ int print_hex(va_list args)
 	}
 	for (j = i - 1; j >= 0; j--)
 		_printf("%c", hexNum[j]);
-	return (i + 1);
+	return (i);
 }
 
 /**
@@ -55,5 +55,5 @@ int printHEX(va_list args)
 	}
 	for (j = i - 1; j >= 0; j--)
 		_printf("%c", hexNum[j]);
-	return (i + 1);
+	return (i);
 }
