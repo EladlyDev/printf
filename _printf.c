@@ -25,14 +25,18 @@ int _printf(const char *format, ...)
 			{
 				write(STDOUT_FILENO, "%", 1);
 				len++;
-				continue;
 			}
-			func = get_func(format[i]);
-			len += func(args);
-			continue;
+			else
+			{
+				func = get_func(format[i]);
+				len += func(args);
+			}
 		}
-		write(STDOUT_FILENO, &format[i], 1);
-		len++;
+		else
+		{
+			write(STDOUT_FILENO, &format[i], 1);
+			len++;
+		}
 	}
 	va_end(args);
 	return (len);
