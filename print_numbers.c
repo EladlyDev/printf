@@ -1,40 +1,6 @@
 #include "main.h"
 
 /**
- * itos - convert an int to a string
- * @n: unsigned integer
- *
- * Return: string rep of integer
- */
-char *itos(unsigned int n)
-{
-	int dig_count = 0;
-	int idx, num = n;
-	char *str;
-
-	/* Count the digits of n*/
-	do {
-		dig_count++;
-		num /= 10;
-	} while (num != 0);
-
-	/* Allocate space for all digits + null byte*/
-	str = malloc(dig_count + 1);
-	if (!str)
-		return (NULL);
-	/*Fill the string strating from the last character*/
-	idx = dig_count - 1;
-	do {
-		str[idx] = '0' + (n % 10);
-		n /= 10;
-		idx--;
-	} while (n != 0);
-	str[dig_count] = '\0';
-
-	return (str);
-}
-
-/**
  * print_int - prints an integer to stdout.
  * @args: integer
  *
@@ -93,4 +59,68 @@ int print_binary(va_list args)
 		len++;
 	}
 	return (len);
+}
+
+/**
+ * print_ui - prints an unsigned int.
+ * @args: va_list of arguments
+ *
+ * Return: legth of the printed characters
+ **/
+int print_ui(va_list args)
+{
+	char *str;
+	unsigned int len = 0, num;
+
+	num = va_arg(args, unsigned int);
+
+	str = itos(num);
+
+	if (str)
+	{
+		len = _strlen(str);
+		write(1, str, len);
+		free(str);
+		return (len);
+	}
+	return (0);
+
+}
+/**
+ * print_octal - print a number in octal (base 8).
+ * @args: va_list arguments
+ *
+ *Return: length of the printed characters
+ **/
+int print_octal(va_list args)
+{
+	unsigned int num;
+	int oNum[100], i = 0, j;
+
+	num = va_arg(args, unsigned int);
+
+	while (num > 0)
+	{
+		oNum[i] = num % 8;
+		num /= 8;
+		i++;
+	}
+	for (j = i - 1; j >= 0; j--)
+		_printf("%d", oNum[j]);
+	return (i + 1);
+}
+
+/**
+ * print_hex - prints a number in print a number
+ * in hexidecimal (base 16)
+ * @args: va_list arguments
+ *
+ * Return: legth of the printed characters.
+ *
+ */
+int print_hex(va_list args)
+{
+	unsigned int num;
+
+	num = va_arg(args, unsigned int);
 }

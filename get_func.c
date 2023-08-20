@@ -13,6 +13,8 @@ int (*get_func(char c))(va_list)
 		{'d', print_int},
 		{'i', print_int},
 		{'b', print_binary},
+		{'u', print_ui},
+		{'o', print_octal},
 		{'\0', NULL}
 	};
 	int i;
