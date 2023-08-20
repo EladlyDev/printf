@@ -26,14 +26,16 @@ int print_char(va_list args)
 int print_string(va_list args)
 {
 	char *out = va_arg(args, char*);
-	unsigned int out_len;
+	unsigned int out_len = 0;
 
 	if (out)
 	{
-		out_len = _strlen(out);
-		while (*out++)
+		while (*out)
 		{
 			write(1, out, 1);
+			out_len++;
+			out++;
+
 		}
 		return (out_len);
 	}
