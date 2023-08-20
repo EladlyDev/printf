@@ -31,8 +31,11 @@ int print_string(va_list args)
 	if (out)
 	{
 		out_len = _strlen(out);
-		write(STDOUT_FILENO, out, out_len);
-		return (out_len);
+		if (out_len)
+		{
+			write(STDOUT_FILENO, out, out_len);
+			return (out_len);
+		}
 	}
 
 	return (0);
