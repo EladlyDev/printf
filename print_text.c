@@ -11,13 +11,9 @@ int print_char(va_list args)
 {
 	char out = va_arg(args, int);
 
-	if (out)
-	{
-		write(STDOUT_FILENO, &out, 1);
-		return (1);
-	}
+	write(STDOUT_FILENO, &out, 1);
 
-	return (0);
+	return (1);
 }
 
 /**
