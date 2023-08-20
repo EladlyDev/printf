@@ -11,7 +11,8 @@
 int print_hex(va_list args)
 {
 	unsigned int num;
-	char hexNum[100], i = 0, j;
+	int i = 0, j;
+	char hexNum[100];
 
 	num = va_arg(args, unsigned int);
 
@@ -39,7 +40,8 @@ int print_hex(va_list args)
 int printHEX(va_list args)
 {
 	unsigned int num;
-	char hexNum[100], i = 0, j;
+	int i = 0, j;
+	char hexNum[100];
 
 	num = va_arg(args, unsigned int);
 
