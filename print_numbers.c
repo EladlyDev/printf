@@ -67,3 +67,30 @@ int print_int(va_list args)
 	}
 	return (0);
 }
+
+/**
+ * print_binary - This function prints unsigned int as a binary.
+ * @args: the list of arguments where the number comes from.
+ *
+ * Return: the length of the printed number, 0 on faliure.
+ **/
+int print_binary(va_list args)
+{
+	int arr[50], i, len = 0;
+	unsigned int num;
+
+	num = va_arg(args, unsigned int);
+	if (!num)
+		return (0);
+	for (i = 0; num > 0; i++)
+	{
+		arr[i] = num % 2;
+		num = num / 2;
+	}
+	for (i = i - 1; i >= 0; i--)
+	{
+		_printf("%d", arr[i]);
+		len++;
+	}
+	return (len);
+}

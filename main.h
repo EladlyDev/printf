@@ -14,7 +14,7 @@ unsigned int _strlen(char *);
 int print_char(va_list);
 int print_string(va_list);
 int print_int(va_list);
-int istype(char);
+int print_binary(va_list);
 
 /* Structures */
 /**

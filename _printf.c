@@ -16,8 +16,23 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(args, format);
+
 	for (i = 0; format[i];)
 	{
+		/* hello %% %s % */
+		if (format[i] == '%' && format[i + 1] == '%')
+		{
+			i += 2;
+			continue;
+		}
+		if (format[i] == '%' && !get_func(format[i + 1]))
+			return (-1);
+		i++;
+	}
+
+	for (i = 0; format[i];)
+	{
+		/* hello %% %b % */
 		if (format[i] == '%' && format[i + 1] == '%')
 		{
 			write(STDOUT_FILENO, &format[i], 1);
@@ -25,8 +40,6 @@ int _printf(const char *format, ...)
 			i += 2;
 			continue;
 		}
-		if (format[i] == '%' && !get_func(format[i + 1]))
-			return (-1);
 		if (format[i] == '%' && get_func(format[i + 1]))
 		{
 			func = get_func(format[i + 1]);

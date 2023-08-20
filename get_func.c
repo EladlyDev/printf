@@ -12,6 +12,7 @@ int (*get_func(char c))(va_list)
 		{'s', print_string},
 		{'d', print_int},
 		{'i', print_int},
+		{'b', print_binary},
 		{'\0', NULL}
 	};
 	int i;
