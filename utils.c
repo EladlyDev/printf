@@ -23,8 +23,6 @@ unsigned int _strlen(char *str)
  **/
 int check_format(const char *format)
 {
-	int i;
-
 	if (!format)
 		return (0);
 	return (1);
