@@ -8,7 +8,7 @@
  **/
 int _printf(const char *format, ...)
 {
-	unsigned int i, len = 0, mod_len = 0;
+	unsigned int i, len = 0;
 	va_list args;
 	int (*func)(va_list);
 
@@ -16,28 +16,24 @@ int _printf(const char *format, ...)
 		return (-1);
 	va_start(args, format);
 
-	for (i = 0; format[i];)
+	for (i = 0; format[i]; i++)
 	{
-		if (format[i] == '%' && format[i + 1] == '%')
+		if (format[i] == '%')
 		{
-			write(STDOUT_FILENO, &format[i], 1);
-			mod_len++;
-			i += 2;
-			continue;
-		}
-		if (format[i] == '%' && get_func(format[i + 1]))
-		{
-			func = get_func(format[i + 1]);
+			i++;
+			if (format[i] == '%')
+			{
+				write(STDOUT_FILENO, &format[i], 1);
+				len++;
+				continue;
+			}
+			func = get_func(format[i]);
 			len += func(args);
-			i += 2;
 			continue;
 		}
 		write(STDOUT_FILENO, &format[i], 1);
 		len++;
-		i++;
-		continue;
 	}
-	len += mod_len;
 	va_end(args);
 	return (len);
 }
