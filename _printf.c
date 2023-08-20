@@ -1,23 +1,6 @@
 #include "main.h"
 
 /**
- * istype - checks if a charcter is a
- * conversion specifier
- * @c: char
- *
- * Return: 1 if true, 0 otherwise
- **/
-int istype(char c)
-{
-	char *types = "csdi";
-	int i;
-
-	for (i = 0; types[i] != '\0'; i++)
-		if (types[i] == c)
-			return (1);
-	return (0);
-}
-/**
  * _printf - formatting function that is used to print a string to stdout.
  * @format: the string and the format of the output.
  *
@@ -25,7 +8,7 @@ int istype(char c)
  **/
 int _printf(const char *format, ...)
 {
-	unsigned int i, j, len = 0, total_len = 0;
+	unsigned int i, len = 0, mod_len = 0;
 	va_list args;
 	int (*func)(va_list);
 
@@ -33,36 +16,30 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(args, format);
-	for (i = 0; format[i]; i++)
+	for (i = 0; format[i];)
 	{
 		if (format[i] == '%' && format[i + 1] == '%')
 		{
-			char c = '%';
-
-			write(1, &c, 1);
-			i++, total_len++;
+			write(STDOUT_FILENO, &format[i], 1);
+			mod_len++;
+			i += 2;
 			continue;
 		}
-		if (format[i] == '%')
+		if (format[i] == '%' && !get_func(format[i + 1]))
+			return (-1);
+		if (format[i] == '%' && get_func(format[i + 1]))
 		{
-			for (j = i + 1; format[j] != '\0'; j++)
-			{
-				if (istype(format[j]))
-				{
-					func = get_func(format[j]);
-					len = func(args);
-					total_len += len;
-					break;
-				}
-			}
-			if (format[j] == '\0')
-				return (-1);
-			i = j;
+			func = get_func(format[i + 1]);
+			len += func(args);
+			i += 2;
 			continue;
 		}
-		write(1, &format[i], 1);
-		total_len++;
+		write(STDOUT_FILENO, &format[i], 1);
+		len++;
+		i++;
+		continue;
 	}
+	len += mod_len;
 	va_end(args);
-	return (total_len);
+	return (len);
 }
