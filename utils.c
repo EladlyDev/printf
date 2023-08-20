@@ -25,20 +25,23 @@ int check_format(const char *format)
 {
 	int i;
 
-	if (!format || *format == '\0')
+	if (!format)
 		return (0);
 
 
-	for (i = 0; format[i];)
+	for (i = 0; format[i]; i++)
 	{
-		if (format[i] == '%' && format[i + 1] == '%')
+		if (format[i] == '%')
 		{
-			i += 2;
-			continue;
+			i++;
+			if (format[i] == '%')
+			{
+				i++;
+				continue;
+			}
+			if (!get_func(format[i]))
+				return (0);
 		}
-		if (format[i] == '%' && !get_func(format[i + 1]))
-			return (0);
-		i++;
 	}
 	return (1);
 }
