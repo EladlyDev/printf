@@ -25,7 +25,7 @@ int check_format(const char *format)
 {
 	int i;
 
-	if (!format)
+	if (format == NULL)
 		return (0);
 
 
@@ -37,9 +37,8 @@ int check_format(const char *format)
 			if (format[i] == '%')
 			{
 				i++;
-				continue;
 			}
-			if (!get_func(format[i]))
+			else if (!get_func(format[i]))
 				return (0);
 		}
 	}
