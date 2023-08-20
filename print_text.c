@@ -11,7 +11,7 @@ int print_char(va_list args)
 {
 	char out = va_arg(args, int);
 
-	write(STDOUT_FILENO, &out, 1);
+	write(1, &out, 1);
 
 	return (1);
 }
@@ -33,7 +33,7 @@ int print_string(va_list args)
 		out_len = _strlen(out);
 		if (out_len)
 		{
-			write(STDOUT_FILENO, out, out_len);
+			write(1, out, out_len);
 			return (out_len);
 		}
 	}

@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 	{
 		if(format[i] != '%')
 		{
-			write(STDOUT_FILENO, &format[i], 1);
+			write(1, &format[i], 1);
 			len++;
 		}
 		else
@@ -28,7 +28,7 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '%')
 			{
-				write(STDOUT_FILENO, "%", 1);
+				write(1, "%", 1);
 				len++;
 			}
 			else
