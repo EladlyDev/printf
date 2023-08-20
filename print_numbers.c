@@ -76,7 +76,7 @@ int print_int(va_list args)
  **/
 int print_binary(va_list args)
 {
-	int arr[50], i, len = 0;
+	int arr[5000], i, len = 0;
 	unsigned int num;
 
 	num = va_arg(args, unsigned int);
