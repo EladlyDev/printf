@@ -17,7 +17,11 @@ int print_int(va_list);
 int print_binary(va_list);
 int check_format(const char *format);
 int itob(int);
-char *itos(unsigned int n);
+char *itos(unsigned long);
+int print_ui(va_list);
+int print_octal(va_list);
+int printHEX(va_list args);
+int print_hex(va_list args);
 
 /* Structures */
 /**

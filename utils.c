@@ -58,15 +58,15 @@ int itob(int num)
 }
 
 /**
- * itos - convert an int to a string
- * @n: unsigned integer
+ * itos - convert a number to a string
+ * @n: number
  *
  * Return: string rep of integer
  */
-char *itos(unsigned int n)
+char *itos(unsigned long n)
 {
-	int dig_count = 0;
-	int idx, num = n;
+	int dig_count = 0, idx;
+	long num = n;
 	char *str;
 
 	/* Count the digits of n*/

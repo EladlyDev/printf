@@ -59,3 +59,52 @@ int print_binary(va_list args)
 	}
 	return (len);
 }
+
+/**
+ * print_ui - prints an unsigned int.
+ * @args: va_list of arguments
+ *
+ * Return: legth of the printed characters
+ **/
+int print_ui(va_list args)
+{
+	char *str;
+	unsigned int len = 0, num;
+
+	num = va_arg(args, unsigned int);
+
+	str = itos(num);
+
+	if (str)
+	{
+		len = _strlen(str);
+		write(1, str, len);
+		free(str);
+		return (len);
+	}
+	return (0);
+
+}
+/**
+ * print_octal - print a number in octal (base 8).
+ * @args: va_list arguments
+ *
+ *Return: length of the printed characters
+ **/
+int print_octal(va_list args)
+{
+	unsigned int num;
+	int oNum[100], i = 0, j;
+
+	num = va_arg(args, unsigned int);
+
+	while (num > 0)
+	{
+		oNum[i] = num % 8;
+		num /= 8;
+		i++;
+	}
+	for (j = i - 1; j >= 0; j--)
+		_printf("%d", oNum[j]);
+	return (i + 1);
+}
