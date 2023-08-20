@@ -62,6 +62,8 @@ int print_int(va_list args)
 		len = _strlen(str);
 		write(1, str, len);
 		free(str);
+		len = num < 0 ? len + 1 : len;
+		return (len);
 	}
 	return (0);
 }
