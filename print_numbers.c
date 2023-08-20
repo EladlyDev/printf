@@ -47,6 +47,15 @@ int print_binary(va_list args)
 
 	num = va_arg(args, unsigned int);
 
-	binary = itob(num);
-	return (_printf("%d", binary));
+	for (i = 0; num > 0; i++)
+	{
+		arr[i] = num % 2;
+		num = num / 2;
+	}
+	for (i = i - 1; i >= 0; i--)
+	{
+		_printf("%d", arr[i]);
+		len++;
+	}
+	return (len);
 }
