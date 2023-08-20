@@ -27,22 +27,6 @@ int check_format(const char *format)
 
 	if (!format)
 		return (0);
-
-
-	for (i = 0; format[i]; i++)
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == '%')
-			{
-				i++;
-				continue;
-			}
-			if (!get_func(format[i]))
-				return (0);
-		}
-	}
 	return (1);
 }
 
