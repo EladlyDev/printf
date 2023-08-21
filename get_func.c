@@ -21,7 +21,7 @@ int (*get_func(char c))(va_list)
 	};
 	int i;
 
-	if (c != '\0')
+	if (c == '\0')
 		return (NULL);
 
 	for (i = 0; type[i].c != '\0'; i++)
