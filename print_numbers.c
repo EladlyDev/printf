@@ -68,7 +68,7 @@ int print_binary(va_list args, char *buffer, unsigned int len)
 	}
 	for (j = i - 1; j >= 0; j--)
 	{
-		buffer[len] = arr[j];
+		buffer[len] = arr[j] + '0';
 		len++;
 	}
 	return (i);
@@ -132,9 +132,8 @@ int print_octal(va_list args, char *buffer, unsigned int len)
 	}
 	for (j = i - 1; j >= 0; j--)
 	{
-		buffer[len] = oNum[j];
+		buffer[len] = oNum[j] + '0';
 		len++;
 	}
-	buffer[len] = '\0';
 	return (i);
 }
