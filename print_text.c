@@ -14,8 +14,6 @@ int print_char(va_list args, char *buffer, unsigned int len)
 	char out = va_arg(args, int);
 
 	buffer[len] = out;
-	buffer[len + 1] = '\0';
-
 	return (1);
 }
 
@@ -40,7 +38,5 @@ int print_string(va_list args, char *buffer, unsigned int len)
 		buffer[len] = out[i];
 		len++;
 	}
-	buffer[len] = '\0';
-
 	return (i);
 }

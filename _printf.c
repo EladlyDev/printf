@@ -25,7 +25,6 @@ int _printf(const char *format, ...)
 			if (format[i] == '%')
 			{
 				buffer[len] = '%';
-				buffer[len + 1] = '\0';
 				len++;
 			}
 			else if (get_func(format[i]) != NULL)
@@ -39,11 +38,11 @@ int _printf(const char *format, ...)
 		else
 		{
 			buffer[len] = format[i];
-			buffer[len + 1] = '\0';
 			len++;
 		}
 	}
 	va_end(args);
+	buffer[len] = '\0';
 	write(1, buffer, len);
 	return (len);
 }

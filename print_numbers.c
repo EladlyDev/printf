@@ -33,7 +33,8 @@ int print_int(va_list args, char *buffer, unsigned int len)
 			buffer[len] = str[i];
 			len++;
 		}
-		buffer[len] = '\0';
+		if (num < 0)
+			i++;
 		free(str);
 		return (i);
 	}
@@ -63,7 +64,6 @@ int print_binary(va_list args, char *buffer, unsigned int len)
 	if (i == 0)
 	{
 		buffer[len] = '0';
-		buffer[len + 1] = '\0';
 		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
@@ -98,7 +98,6 @@ int print_ui(va_list args, char *buffer, unsigned int len)
 			buffer[len] = str[i];
 			len++;
 		}
-		buffer[len + 1] = '\0';
 		free(str);
 		return (i);
 	}
@@ -129,7 +128,6 @@ int print_octal(va_list args, char *buffer, unsigned int len)
 	if (i == 0)
 	{
 		buffer[len] = '0';
-		buffer[len + 1] = '\0';
 		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
