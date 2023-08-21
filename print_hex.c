@@ -24,6 +24,11 @@ int print_hex(va_list args)
 		num /= 16;
 		i++;
 	}
+	if (i == 0)
+	{
+		_printf("0");
+		return (1);
+	}
 	for (j = i - 1; j >= 0; j--)
 		_printf("%c", hexNum[j]);
 	return (i);
@@ -52,6 +57,11 @@ int printHEX(va_list args)
 		hexNum[i] = rem < 10 ? rem + '0' : rem - 10 + 'A';
 		num /= 16;
 		i++;
+	}
+	if (i == 0)
+	{
+		_printf("0");
+		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
 		_printf("%c", hexNum[j]);

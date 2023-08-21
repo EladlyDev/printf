@@ -52,6 +52,11 @@ int print_binary(va_list args)
 		arr[i] = num % 2;
 		num = num / 2;
 	}
+	if (i == 0)
+	{
+		_printf("0");
+		return (1);
+	}
 	for (i = i - 1; i >= 0; i--)
 	{
 		_printf("%d", arr[i]);
@@ -103,6 +108,11 @@ int print_octal(va_list args)
 		oNum[i] = num % 8;
 		num /= 8;
 		i++;
+	}
+	if (i == 0)
+	{
+		_printf("0");
+		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
 		_printf("%d", oNum[j]);
