@@ -38,8 +38,14 @@ int check_format(const char *format)
 			{
 				i++;
 			}
-			else if (!get_func(format[i]))
+			else if (format[i] == '\0')
+			{
 				return (0);
+			}
+			else if (format[i] == ' ')
+			{
+				return (0);
+			}
 		}
 	}
 	return (1);

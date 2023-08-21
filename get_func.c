@@ -21,9 +21,6 @@ int (*get_func(char c))(va_list, char *, unsigned int)
 	};
 	int i;
 
-	if (c == '\0')
-		return (NULL);
-
 	for (i = 0; type[i].c != '\0'; i++)
 		if (type[i].c == c)
 			return (type[i].func);

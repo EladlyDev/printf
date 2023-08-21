@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int (*func)(va_list, char *, unsigned int);
 	char buffer[1024];
 
-	if (!check_format(format))
+	if (format == NULL)
 		return (-1);
 	va_start(args, format);
 
@@ -27,13 +27,20 @@ int _printf(const char *format, ...)
 				buffer[len] = '%';
 				len++;
 			}
+			else if (format[i] == '\0' || format[i] == ' ')
+			{
+				return (-1);
+			}
 			else if (get_func(format[i]) != NULL)
 			{
 				func = get_func(format[i]);
 				len += func(args, buffer, len);
 			}
 			else
-				return (-1);
+			{
+				buffer[len++] = '%';
+				buffer[len++] = format[i];
+			}
 		}
 		else
 		{
