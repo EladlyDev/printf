@@ -3,15 +3,18 @@
 /**
  * print_char - prints a character from va_list.
  * @args: the va_list contains the arguments to print from.
+ * @buffer: buffer
+ * @len: current length of buffer
  *
  * Return: the length of the printed text.
  **/
 
-int print_char(va_list args)
+int print_char(va_list args, char *buffer, unsigned int len)
 {
 	char out = va_arg(args, int);
 
-	write(1, &out, 1);
+	buffer[len] = out;
+	buffer[len + 1] = '\0';
 
 	return (1);
 }
@@ -19,19 +22,25 @@ int print_char(va_list args)
 /**
  * print_string - prints a string from va_list.
  * @args: the va_list contains the arguments to print from.
+ * @buffer: buffer
+ * @len: current length of buffer
  *
  * Return: the length of the printed text.
  **/
 
-int print_string(va_list args)
+int print_string(va_list args, char *buffer, unsigned int len)
 {
 	char *out = va_arg(args, char*);
-	unsigned int out_len = 0;
+	unsigned int i = 0;
 
 	if (out == NULL)
 		out = "(null)";
-	out_len = _strlen(out);
-	write(1, out, out_len);
+	for (i = 0; out[i] != '\0'; i++)
+	{
+		buffer[len] = out[i];
+		len++;
+	}
+	buffer[len] = '\0';
 
-	return (out_len);
+	return (i);
 }

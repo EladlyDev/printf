@@ -5,7 +5,7 @@
  *
  * Return: a pointer to the function, NULL on faliure.
  **/
-int (*get_func(char c))(va_list)
+int (*get_func(char c))(va_list, char *, unsigned int)
 {
 	type_t type[] = {
 		{'c', print_char},

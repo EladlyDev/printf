@@ -3,14 +3,16 @@
 /**
  * print_int - prints an integer to stdout.
  * @args: integer
+ * @buffer: buffer
+ * @len: current length  of buffer
  *
  * Return: 0 (Success)
  */
-int print_int(va_list args)
+int print_int(va_list args, char *buffer, unsigned int len)
 {
 	char *str;
-	unsigned int n, len = 0;
-	int num;
+	unsigned int n;
+	int num, i;
 
 	num = va_arg(args, int);
 
@@ -21,15 +23,19 @@ int print_int(va_list args)
 
 	if (str)
 	{
-		char c = '-';
-
 		if (num < 0)
-			write(1, &c, 1);
-		len = _strlen(str);
-		write(1, str, len);
+		{
+			buffer[len] = '-';
+			len++;
+		}
+		for (i = 0; str[i] != '\0'; i++)
+		{
+			buffer[len] = str[i];
+			len++;
+		}
+		buffer[len] = '\0';
 		free(str);
-		len = num < 0 ? len + 1 : len;
-		return (len);
+		return (i);
 	}
 	return (0);
 }
@@ -37,12 +43,14 @@ int print_int(va_list args)
 /**
  * print_binary - This function prints unsigned int as a binary.
  * @args: the list of arguments where the number comes from.
+ * @buffer: buffer
+ * @len: current length  of buffer
  *
  * Return: the length of the printed number, 0 on faliure.
  **/
-int print_binary(va_list args)
+int print_binary(va_list args, char *buffer, unsigned int len)
 {
-	int arr[32], i, len = 0;
+	int arr[32], i = 0, j;
 	unsigned int num;
 
 	num = va_arg(args, unsigned int);
@@ -54,27 +62,30 @@ int print_binary(va_list args)
 	}
 	if (i == 0)
 	{
-		_printf("0");
+		buffer[len] = '0';
+		buffer[len + 1] = '\0';
 		return (1);
 	}
-	for (i = i - 1; i >= 0; i--)
+	for (j = i - 1; j >= 0; j--)
 	{
-		_printf("%d", arr[i]);
+		buffer[len] = arr[j];
 		len++;
 	}
-	return (len);
+	return (i);
 }
 
 /**
  * print_ui - prints an unsigned int.
  * @args: va_list of arguments
+ * @buffer: buffer
+ * @len: current length  of buffer
  *
  * Return: legth of the printed characters
  **/
-int print_ui(va_list args)
+int print_ui(va_list args, char *buffer, unsigned int len)
 {
 	char *str;
-	unsigned int len = 0, num;
+	unsigned int i = 0, num;
 
 	num = va_arg(args, unsigned int);
 
@@ -82,10 +93,14 @@ int print_ui(va_list args)
 
 	if (str)
 	{
-		len = _strlen(str);
-		write(1, str, len);
+		for (i = 0; str[i] != '\0'; i++)
+		{
+			buffer[len] = str[i];
+			len++;
+		}
+		buffer[len + 1] = '\0';
 		free(str);
-		return (len);
+		return (i);
 	}
 	return (0);
 
@@ -93,10 +108,12 @@ int print_ui(va_list args)
 /**
  * print_octal - print a number in octal (base 8).
  * @args: va_list arguments
+ * @buffer: buffer
+ * @len: current length  of buffer
  *
  *Return: length of the printed characters
  **/
-int print_octal(va_list args)
+int print_octal(va_list args, char *buffer, unsigned int len)
 {
 	unsigned int num;
 	int oNum[100], i = 0, j;
@@ -111,10 +128,15 @@ int print_octal(va_list args)
 	}
 	if (i == 0)
 	{
-		_printf("0");
+		buffer[len] = '0';
+		buffer[len + 1] = '\0';
 		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
-		_printf("%d", oNum[j]);
+	{
+		buffer[len] = oNum[j];
+		len++;
+	}
+	buffer[len] = '\0';
 	return (i);
 }

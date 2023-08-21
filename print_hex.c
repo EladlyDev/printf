@@ -4,11 +4,13 @@
  * print_hex - prints a number in print a number
  * in hexidecimal (base 16) using abcdef
  * @args: va_list arguments
+ * @buffer: buffer
+ * @len:current length of buffer
  *
  * Return: legth of the printed characters.
  *
  */
-int print_hex(va_list args)
+int print_hex(va_list args, char *buffer, unsigned int len)
 {
 	unsigned int num;
 	int i = 0, j;
@@ -26,11 +28,16 @@ int print_hex(va_list args)
 	}
 	if (i == 0)
 	{
-		_printf("0");
+		buffer[len] = '0';
+		buffer[len + 1] = '\0';
 		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
-		_printf("%c", hexNum[j]);
+	{
+		buffer[len] = hexNum[j];
+		len++;
+	}
+	buffer[len + 1] = '\0';
 	return (i);
 }
 
@@ -38,11 +45,13 @@ int print_hex(va_list args)
  * printHEX - prints a number in print a number
  * in hexidecimal (base 16) using ABCDEF
  * @args: va_list arguments
+ * @buffer: buffer
+ * @len:current length of buffer
  *
  * Return: legth of the printed characters.
  *
  */
-int printHEX(va_list args)
+int printHEX(va_list args, char *buffer, unsigned int len)
 {
 	unsigned int num;
 	int i = 0, j;
@@ -60,10 +69,15 @@ int printHEX(va_list args)
 	}
 	if (i == 0)
 	{
-		_printf("0");
+		buffer[len] = '0';
+		buffer[len + 1] = '\0';
 		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
-		_printf("%c", hexNum[j]);
+	{
+		buffer[len] = hexNum[j];
+		len++;
+	}
+	buffer[len + 1] = '\0';
 	return (i);
 }

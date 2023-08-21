@@ -9,19 +9,19 @@
 
 /* Prototypes */
 int _printf(const char *format, ...);
-int (*get_func(char c))(va_list);
+int (*get_func(char c))(va_list, char *, unsigned int);
 unsigned int _strlen(char *);
-int print_char(va_list);
-int print_string(va_list);
-int print_int(va_list);
-int print_binary(va_list);
+int print_char(va_list, char *, unsigned int);
+int print_string(va_list, char *, unsigned int);
+int print_int(va_list, char *, unsigned int);
+int print_binary(va_list, char *, unsigned int);
 int check_format(const char *format);
 int itob(int);
 char *itos(unsigned long);
-int print_ui(va_list);
-int print_octal(va_list);
-int printHEX(va_list args);
-int print_hex(va_list args);
+int print_ui(va_list, char *, unsigned int);
+int print_octal(va_list, char *, unsigned int);
+int printHEX(va_list args, char *, unsigned int);
+int print_hex(va_list args, char *, unsigned int);
 
 /* Structures */
 /**
@@ -32,7 +32,7 @@ int print_hex(va_list args);
 typedef struct type
 {
 	char c;
-	int (*func)(va_list);
+	int (*func)(va_list, char *, unsigned int);
 } type_t;
 
 #endif /* _MAIN_ */
