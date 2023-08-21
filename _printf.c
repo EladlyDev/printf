@@ -15,29 +15,30 @@ int _printf(const char *format, ...)
 	buffer = malloc(sizeof(char) * 1024);
 	i = init_check(format, buffer);
 	if (i != 1)
-		return (1);
+		return (i);
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
-		{
-			i++;
+		{	i++;
 			if (format[i] == '\0')
-			{
-				print_buffer(buffer, len);
+			{	print_buffer(buffer, len);
 				return (-1);
 			}
 			else if (format[i] == '%')
 				buffer[len++] = '%';
 			else if (format[i] == ' ')
-			{
-				free(buffer);
+			{	free(buffer);
 				return (-1);
 			}
 			else if (get_func(format[i]) != NULL)
-				func = get_func(format[i]), len += func(args, buffer, len);
+			{	func = get_func(format[i]);
+				len += func(args, buffer, len);
+			}
 			else
-				buffer[len++] = '%', buffer[len++] = format[i];
+			{	buffer[len++] = '%';
+				buffer[len++] = format[i];
+			}
 		}
 		else
 			buffer[len++] = format[i];

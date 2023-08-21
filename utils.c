@@ -84,7 +84,7 @@ char *itos(unsigned long n)
  */
 int init_check(const char *format, char *buffer)
 {
-	if (!format || !buffer || (format[0] == '%' && format[1]))
+	if (!format || !buffer || (format[0] == '%' && !format[1]))
 	{
 		free(buffer);
 		return (-1);
