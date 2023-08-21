@@ -42,12 +42,8 @@ int print_int(va_list args)
  **/
 int print_binary(va_list args)
 {
-	int *arr, i, len = 0;
+	int arr[32], i, len = 0;
 	unsigned int num;
-
-	arr = malloc(sizeof(int) * 8);
-	if (!arr)
-		return (0);
 
 	num = va_arg(args, unsigned int);
 
@@ -61,7 +57,6 @@ int print_binary(va_list args)
 		_printf("%d", arr[i]);
 		len++;
 	}
-	free(arr);
 	return (len);
 }
 
