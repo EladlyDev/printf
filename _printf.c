@@ -31,7 +31,7 @@ int _printf(const char *format, ...)
 				write(1, "%", 1);
 				len++;
 			}
-			else if (format[i] == 'c' || format[i] == 's')
+			else if (get_func(format[i]) != NULL)
 			{
 				func = get_func(format[i]);
 				len += func(args);
