@@ -29,7 +29,7 @@ int print_string(va_list args)
 	unsigned int out_len = 0;
 
 	if (out == NULL)
-		return (0);
+		out = "(null)";
 	out_len = _strlen(out);
 	write(1, out, out_len);
 
