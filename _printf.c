@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int (*func)(va_list);
 
 	if (!check_format(format))
-		return (0);
+		return (-1);
 	va_start(args, format);
 
 	for (i = 0; format[i]; i++)
