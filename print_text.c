@@ -28,17 +28,10 @@ int print_string(va_list args)
 	char *out = va_arg(args, char*);
 	unsigned int out_len = 0;
 
-	if (out)
-	{
-		while (*out)
-		{
-			write(1, out, 1);
-			out_len++;
-			out++;
+	if (out == NULL)
+		out = "(null)";
+	out_len = _strlen(out);
+	write(1, out, out_len);
 
-		}
-		return (out_len);
-	}
-
-	return (0);
+	return (out_len);
 }
