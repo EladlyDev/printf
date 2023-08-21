@@ -42,36 +42,21 @@ int print_int(va_list args)
  **/
 int print_binary(va_list args)
 {
-	int *arr, i, len = 0;
-	char *out;
-	unsigned int num, binary;
+	int arr[32], i, len = 0;
+	unsigned int num;
 
 	num = va_arg(args, unsigned int);
 
-    /* convert to binary so I can get the length of the output */
-	binary = itob(num);
-	out = itos(binary);
-	for (i = 0; out[i]; i++)
-		len++;
-
-    /* allocate memory for the output */
-	arr = malloc(sizeof(int) * len);
-	if (!arr)
-		return (0);
-
-    /* print the values */
 	for (i = 0; num > 0; i++)
 	{
 		arr[i] = num % 2;
 		num = num / 2;
 	}
-	for (i = i - 1, len = 0; i >= 0; i--)
+	for (i = i - 1; i >= 0; i--)
 	{
 		_printf("%d", arr[i]);
 		len++;
 	}
-	free(out);
-	free(arr);
 	return (len);
 }
 
