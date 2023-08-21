@@ -23,11 +23,27 @@ unsigned int _strlen(char *str)
  **/
 int check_format(const char *format)
 {
+	int i;
+
 	if (format == NULL)
 		return (0);
+
+
+	for (i = 0; format[i]; i++)
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == '%')
+			{
+				i++;
+			}
+			else if (!get_func(format[i]))
+				return (0);
+		}
+	}
 	return (1);
 }
-
 /**
  * itob - converts an integer into binary.
  * @num: the integer.
