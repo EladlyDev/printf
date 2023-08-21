@@ -31,6 +31,8 @@ int _printf(const char *format, ...)
 				func = get_func(format[i]);
 				len += func(args);
 			}
+			else
+				return (-1);
 		}
 		else
 		{
