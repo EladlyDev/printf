@@ -26,12 +26,12 @@ int print_char(va_list args)
 int print_string(va_list args)
 {
 	char *out = va_arg(args, char*);
-	unsigned int out_len = 0;
+	unsigned int i = 0;
 
 	if (out == NULL)
 		out = "(null)";
-	out_len = _strlen(out);
-	write(1, out, out_len);
+	for (i = 0; out[i] != '\0'; i++)
+		write(1, out, out_len);
 
-	return (out_len);
+	return (i);
 }
