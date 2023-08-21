@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * _printf - formatting function that is used to print a string to stdout.
  * @format: the string and the format of the output.
@@ -11,38 +10,40 @@ int _printf(const char *format, ...)
 	unsigned int i, len = 0;
 	va_list args;
 	int (*func)(va_list, char *, unsigned int);
-	char buffer[1024];
+	char *buffer;
 
-	if (format == NULL)
-		return (-1);
+	buffer = malloc(sizeof(char) * 1024);
+	i = init_check(format, buffer);
+	if (i != 1)
+		return (1);
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == '%')
+			if (format[i] == '\0')
 			{
-				buffer[len++] = '%';
-			}
-			else if (format[i] == '\0' || format[i] == ' ')
+				print_buffer(buffer, len);
 				return (-1);
-			else if (get_func(format[i]) != NULL)
-			{
-				func = get_func(format[i]);
-				len += func(args, buffer, len);
 			}
-			else
-			{
+			else if (format[i] == '%')
 				buffer[len++] = '%';
-				buffer[len++] = format[i];
+			else if (format[i] == ' ')
+			{
+				free(buffer);
+				return (-1);
 			}
+			else if (get_func(format[i]) != NULL)
+				func = get_func(format[i]), len += func(args, buffer, len);
+			else
+				buffer[len++] = '%', buffer[len++] = format[i];
 		}
 		else
 			buffer[len++] = format[i];
 	}
 	va_end(args);
 	buffer[len] = '\0';
-	write(1, buffer, len);
+	print_buffer(buffer, len);
 	return (len);
 }

@@ -16,40 +16,17 @@ unsigned int _strlen(char *str)
 }
 
 /**
- * check_format - to handle the edge cases in _printf.
- * @format: the format passed to _printf.
+ * print_buffer - prints n bytes of buffer to STDOUT
+ * @buffer: buffer
+ * @n: number of bytes to print
  *
- * Return: 0 if there's any issues, 1 on succeed.
  **/
-int check_format(const char *format)
+void print_buffer(char *buffer, unsigned int n)
 {
-	int i;
-
-	if (format == NULL)
-		return (0);
-
-
-	for (i = 0; format[i]; i++)
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			if (format[i] == '%')
-			{
-				i++;
-			}
-			else if (format[i] == '\0')
-			{
-				return (0);
-			}
-			else if (format[i] == ' ')
-			{
-				return (0);
-			}
-		}
-	}
-	return (1);
+	write(1, buffer, n);
+	free(buffer);
 }
+
 /**
  * itob - converts an integer into binary.
  * @num: the integer.
@@ -96,4 +73,26 @@ char *itos(unsigned long n)
 	str[dig_count] = '\0';
 
 	return (str);
+}
+
+/**
+ * init_check - Checks for initial errors
+ * @format: _printf string
+ * @buffer: buffer
+ *
+ * Return: -1 or 0 if error, 1 otherwise.
+ */
+int init_check(const char *format, char *buffer)
+{
+	if (!format || !buffer || (format[0] == '%' && format[1]))
+	{
+		free(buffer);
+		return (-1);
+	}
+	if (format[0] == '\0')
+	{
+		free(buffer);
+		return (0);
+	}
+	return (1);
 }

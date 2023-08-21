@@ -15,13 +15,14 @@ int print_char(va_list, char *, unsigned int);
 int print_string(va_list, char *, unsigned int);
 int print_int(va_list, char *, unsigned int);
 int print_binary(va_list, char *, unsigned int);
-int check_format(const char *format);
+int init_check(const char *format, char *buffer);
 int itob(int);
 char *itos(unsigned long);
 int print_ui(va_list, char *, unsigned int);
 int print_octal(va_list, char *, unsigned int);
 int printHEX(va_list args, char *, unsigned int);
 int print_hex(va_list args, char *, unsigned int);
+void print_buffer(char *, unsigned int);
 
 /* Structures */
 /**
