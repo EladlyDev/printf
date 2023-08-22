@@ -27,8 +27,8 @@ int _printf(const char *format, ...)
 			}
 			else if (format[i] == '%')
 				buffer[len++] = '%';
-			else if (format[i] == ' ')
-			{	free(buffer);
+			else if (format[i] == ' ' && !format[i + 1])
+			{	print_buffer(buffer, len);
 				return (-1);
 			}
 			else if (get_func(format[i]) != NULL)
