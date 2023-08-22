@@ -22,13 +22,13 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{	i++;
 			if (format[i] == '\0')
-			{	print_buffer(buffer, len), va_end(args);
+			{	print_buffer(buffer, len);
 				return (-1);
 			}
 			else if (format[i] == '%')
 				buffer[len++] = '%';
 			else if (format[i] == ' ' && !format[i + 1])
-			{	print_buffer(buffer, len), va_end(args);
+			{	print_buffer(buffer, len);
 				return (-1);
 			}
 			else if (get_func(format[i]) != NULL)
