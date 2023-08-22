@@ -28,17 +28,12 @@ int print_hex(va_list args, char *buffer, unsigned int len)
 	}
 	if (i == 0)
 	{
-		buffer[len] = '0';
-		buffer[len + 1] = '\0';
-		return (1);
+		len = update_buffer(buffer, len, '0');
+		return (len);
 	}
 	for (j = i - 1; j >= 0; j--)
-	{
-		buffer[len] = hexNum[j];
-		len++;
-	}
-	buffer[len + 1] = '\0';
-	return (i);
+		len = update_buffer(buffer, len, hexNum[j]);
+	return (len);
 }
 
 /**
@@ -69,15 +64,12 @@ int printHEX(va_list args, char *buffer, unsigned int len)
 	}
 	if (i == 0)
 	{
-		buffer[len] = '0';
-		buffer[len + 1] = '\0';
+		len  = update_buffer(buffer, len, '0');
 		return (1);
 	}
 	for (j = i - 1; j >= 0; j--)
 	{
-		buffer[len] = hexNum[j];
-		len++;
+		len = update_buffer(buffer, len, hexNum[j]);
 	}
-	buffer[len + 1] = '\0';
-	return (i);
+	return (len);
 }

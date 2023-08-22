@@ -24,19 +24,13 @@ int print_int(va_list args, char *buffer, unsigned int len)
 	if (str)
 	{
 		if (num < 0)
-		{
-			buffer[len] = '-';
-			len++;
-		}
+			len = update_buffer(buffer, len, '-');
 		for (i = 0; str[i] != '\0'; i++)
-		{
-			buffer[len] = str[i];
-			len++;
-		}
+			len = update_buffer(buffer, len, str[i]);
 		if (num < 0)
 			i++;
 		free(str);
-		return (i);
+		return (len);
 	}
 	return (0);
 }
@@ -63,15 +57,12 @@ int print_binary(va_list args, char *buffer, unsigned int len)
 	}
 	if (i == 0)
 	{
-		buffer[len] = '0';
-		return (1);
+		len = update_buffer(buffer, len, '0');
+		return (len);
 	}
 	for (j = i - 1; j >= 0; j--)
-	{
-		buffer[len] = arr[j] + '0';
-		len++;
-	}
-	return (i);
+		len = update_buffer(buffer, len, arr[j] + '0');
+	return (len);
 }
 
 /**
@@ -94,12 +85,9 @@ int print_ui(va_list args, char *buffer, unsigned int len)
 	if (str)
 	{
 		for (i = 0; str[i] != '\0'; i++)
-		{
-			buffer[len] = str[i];
-			len++;
-		}
+			len = update_buffer(buffer, len, str[i]);
 		free(str);
-		return (i);
+		return (len);
 	}
 	return (0);
 
@@ -127,13 +115,10 @@ int print_octal(va_list args, char *buffer, unsigned int len)
 	}
 	if (i == 0)
 	{
-		buffer[len] = '0';
-		return (1);
+		update_buffer(buffer, len++, '0');
+		return (len);
 	}
 	for (j = i - 1; j >= 0; j--)
-	{
-		buffer[len] = oNum[j] + '0';
-		len++;
-	}
-	return (i);
+		len = update_buffer(buffer, len, oNum[j] + '0');
+	return (len);
 }

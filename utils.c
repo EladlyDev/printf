@@ -1,21 +1,6 @@
 #include "main.h"
 
 /**
- * _strlen - gets the length of a string, without the null terminator.
- * @str: the string
- *
- * Return: the length of @str.
- **/
-unsigned int _strlen(char *str)
-{
-	unsigned int i;
-
-	for (i = 0; str[i]; i++)
-		;
-	return (i);
-}
-
-/**
  * print_buffer - prints n bytes of buffer to STDOUT
  * @buffer: buffer
  * @n: number of bytes to print
@@ -23,8 +8,26 @@ unsigned int _strlen(char *str)
  **/
 void print_buffer(char *buffer, unsigned int n)
 {
+	n = n == 1024 ? 1024 : n % 1024;
 	write(1, buffer, n);
-	free(buffer);
+}
+/**
+ * update_buffer - updates the buffer with a new char
+ * @buffer: buffer
+ * @len: number of elements in buffer
+ * @c: char
+ *
+ * Return: number of elements in the buffer.
+ */
+unsigned int update_buffer(char *buffer, unsigned int len, char c)
+{
+	unsigned int i = len % 1024;
+
+	if (len > 0 && i == 0)
+		print_buffer(buffer, 1024);
+	buffer[i] = c;
+
+	return (len + 1);
 }
 
 /**
