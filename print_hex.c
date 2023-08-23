@@ -22,6 +22,7 @@ int print_hex(va_list args, char *buffer, unsigned int len)
 
 	for (i = 0; hexNum[i] != '\0'; i++)
 		len = update_buffer(buffer, len, hexNum[i]);
+	free(hexNum);
 	return (len);
 }
 
@@ -47,6 +48,6 @@ int printHEX(va_list args, char *buffer, unsigned int len)
 
 	for (i = 0; hexNum[i] != '\0'; i++)
 		len = update_buffer(buffer, len, hexNum[i]);
-
+	free(hexNum);
 	return (len);
 }

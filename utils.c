@@ -88,10 +88,10 @@ int init_check(const char *format, char *buffer)
 
 /**
  * itox - converts an integer into hexdecimal.
- * @num: the number to be convirted.
+ * @n: the number to be convirted.
  * @upper: true for upper, false for lower cased ouptut.
  *
- * Return : a string to the hex value.
+ * Return: hex value of n as string
  **/
 char *itox(unsigned long n, int upper)
 {
@@ -112,7 +112,12 @@ char *itox(unsigned long n, int upper)
 		i++;
 	}
 	if (i == 0)
-		return ("0");
+	{
+		str = malloc(sizeof(char) * 2);
+		str[0] = '0';
+		str[1] = '\0';
+		return (str);
+	}
 	str = malloc(sizeof(char) * i + 1);
 	for (j = i - 1, k = 0; j >= 0; j--, k++)
 		str[k] = hexNum[j];

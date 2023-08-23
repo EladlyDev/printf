@@ -17,6 +17,7 @@ int (*get_func(char c))(va_list, char *, unsigned int)
 		{'o', print_octal},
 		{'x', print_hex},
 		{'X', printHEX},
+		{'S', print_S},
 		{'\0', NULL}
 	};
 	int i;
