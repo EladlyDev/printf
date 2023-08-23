@@ -13,26 +13,15 @@
 int print_hex(va_list args, char *buffer, unsigned int len)
 {
 	unsigned int num;
-	int i = 0, j;
-	char hexNum[100];
+	int i = 0;
+	char *hexNum;
 
 	num = va_arg(args, unsigned int);
 
-	while (num > 0)
-	{
-		int rem = num % 16;
+	hexNum = itox(num, 0);
 
-		hexNum[i] = rem < 10 ? rem + '0' : rem - 10 + 'a';
-		num /= 16;
-		i++;
-	}
-	if (i == 0)
-	{
-		len = update_buffer(buffer, len, '0');
-		return (len);
-	}
-	for (j = i - 1; j >= 0; j--)
-		len = update_buffer(buffer, len, hexNum[j]);
+	for (i = 0; hexNum[i] != '\0'; i++)
+		len = update_buffer(buffer, len, hexNum[i]);
 	return (len);
 }
 
@@ -49,27 +38,15 @@ int print_hex(va_list args, char *buffer, unsigned int len)
 int printHEX(va_list args, char *buffer, unsigned int len)
 {
 	unsigned int num;
-	int i = 0, j;
-	char hexNum[100];
+	int i = 0;
+	char *hexNum;
 
 	num = va_arg(args, unsigned int);
 
-	while (num > 0)
-	{
-		int rem = num % 16;
+	hexNum = itox(num, 1);
 
-		hexNum[i] = rem < 10 ? rem + '0' : rem - 10 + 'A';
-		num /= 16;
-		i++;
-	}
-	if (i == 0)
-	{
-		len  = update_buffer(buffer, len, '0');
-		return (1);
-	}
-	for (j = i - 1; j >= 0; j--)
-	{
-		len = update_buffer(buffer, len, hexNum[j]);
-	}
+	for (i = 0; hexNum[i] != '\0'; i++)
+		len = update_buffer(buffer, len, hexNum[i]);
+
 	return (len);
 }
