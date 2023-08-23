@@ -24,6 +24,7 @@ int printHEX(va_list args, char *, unsigned int);
 int print_hex(va_list args, char *, unsigned int);
 void print_buffer(char *, unsigned int);
 unsigned int update_buffer(char *, unsigned int, char);
+char *itox(unsigned int, int);
 
 /* Structures */
 /**

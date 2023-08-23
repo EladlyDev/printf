@@ -31,20 +31,6 @@ unsigned int update_buffer(char *buffer, unsigned int len, char c)
 }
 
 /**
- * itob - converts an integer into binary.
- * @num: the integer.
- *
- * Return: the binary representation of @num.
- **/
-int itob(int num)
-{
-	if (num < 2)
-		return (num);
-
-	return (itob(num / 2) * 10 + num % 2);
-}
-
-/**
  * itos - convert a number to a string
  * @n: number
  *
@@ -98,4 +84,37 @@ int init_check(const char *format, char *buffer)
 		return (0);
 	}
 	return (1);
+}
+
+/**
+ * itox - converts an integer into hexdecimal.
+ * @num: the number to be convirted.
+ * @upper: true for upper, false for lower cased ouptut.
+ *
+ * Return : a string to the hex value.
+ **/
+char *itox(unsigned int num, int upper)
+{
+	int i = 0, j, k;
+	char hexNum[100], *str;
+
+
+	while (num > 0)
+	{
+		int rem = num % 16;
+
+		if (upper)
+			hexNum[i] = rem < 10 ? rem + '0' : rem - 10 + 'A';
+		else
+			hexNum[i] = rem < 10 ? rem + '0' : rem - 10 + 'a';
+		num /= 16;
+		i++;
+	}
+	if (i == 0)
+		return ("0");
+	str = malloc(sizeof(char) * i + 1);
+	for (j = i - 1, k = 0; j >= 0; j--, k++)
+		str[k] = hexNum[j];
+	str[k] = '\0';
+	return (str);
 }
