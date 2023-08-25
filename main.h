@@ -23,9 +23,10 @@ int print_octal(va_list, char *, unsigned int);
 int printHEX(va_list args, char *, unsigned int);
 int print_hex(va_list args, char *, unsigned int);
 int print_S(va_list args, char *, unsigned int);
+int print_p(va_list args, char *buffer, unsigned int len);
 void print_buffer(char *, unsigned int);
 unsigned int update_buffer(char *, unsigned int, char);
-char *itox(unsigned long, int);
+char *itox(long, int);
 
 /* Structures */
 /**

@@ -93,7 +93,7 @@ int init_check(const char *format, char *buffer)
  *
  * Return: hex value of n as string
  **/
-char *itox(unsigned long n, int upper)
+char *itox(long n, int upper)
 {
 	int i = 0, j, k;
 	char hexNum[100], *str;
